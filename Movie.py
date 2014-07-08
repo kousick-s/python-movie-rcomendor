@@ -89,7 +89,7 @@ def get_Top_Movie_By_Year(year):
                     movieswithparticularyear[keyval]=float(avgsum.get(keyval)) 
     #print avgsum
     #movieswithparticularyear = collections.OrderedDict(sorted(d.items()))
-    highest_rated_movie_by_year=max(movieswithparticularyear.iteritems(), key=operator.itemgetter(1))[0]
+    highest_rated_movie_by_year=max_of_dict(movieswithparticularyear)
     print "Top Movie By Year:", year + "-" + moviesdict[highest_rated_movie_by_year][1];
     
 def get_Top_Movie_By_Genre(genre):
@@ -107,7 +107,7 @@ def get_Top_Movie_By_Genre(genre):
                 
                 moviesbyparticulargenre[y[0]]=float(avgsum[y[0]])
                 
-    highest_rated_movie_by_genre=max(moviesbyparticulargenre.iteritems(),key=operator.itemgetter(1))[0]
+    highest_rated_movie_by_genre=max_of_dict(moviesbyparticulargenre)
     print "Top Movie By Genre:", genre + "-" + moviesdict[highest_rated_movie_by_genre][1];
     
 def get_Top_Movie_By_YearAndGenre(year,genre):
@@ -128,7 +128,8 @@ def get_Top_Movie_By_YearAndGenre(year,genre):
                 if m[2]==year:
                     keyval=y[0]
                     movieswithparticularyear[k]=float(avgsum.get(k))      
-    highest_rated_movie_by_yearngenre=max(movieswithparticularyear.iteritems(), key=operator.itemgetter(1))[0]
+    #highest_rated_movie_by_yearngenre=max(movieswithparticularyear.iteritems(), key=operator.itemgetter(1))[0]
+    highest_rated_movie_by_yearngenre=max_of_dict(movieswithparticularyear)
     print "Top Movie By Year and Genre:", year + genre + "-" + moviesdict[highest_rated_movie_by_yearngenre][1];            
 
 def get_Highest_Rated_Movie():
@@ -139,6 +140,15 @@ def get_Most_Watched_Movie():
     average_Rating_Calculation()
     most_watched_movie=max(count.iteritems(), key=operator.itemgetter(1))[0]
     print "Most Watched Movie:",moviesdict[most_watched_movie][1];
+    
+def max_of_dict(sampledict):
+    maxvalue=0
+    maxkey='0'
+    for m,n in sampledict.items():
+        if n>=maxvalue:
+            maxkey=m
+    return maxkey
+        
     
 get_Highest_Rated_Movie()
 get_Most_Watched_Movie()
